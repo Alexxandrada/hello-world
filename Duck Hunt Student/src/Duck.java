@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -51,6 +52,14 @@ public void setX(int xCoord) {
 	x = xCoord;
 }
 public boolean collide(double clickedX,double clickedY) {
+	System.out.println(clickedX + ": " + clickedY);
+	
+	
+	Rectangle a = new Rectangle(x, y, 100, 100);
+	
+	if(a.contains(clickedX, clickedY)) {
+		System.out.println("ouch");
+	}
 	
 	if(clickedX > x && clickedX <= x + 75 && clickedY > y && clickedY > y +50){
 		resetDuck();

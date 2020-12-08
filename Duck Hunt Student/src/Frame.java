@@ -21,6 +21,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener {
 	//try same thing w the tree
 	Tree tree = new Tree();
 	Duck duck = new Duck();
+	Dog doggy = new Dog();
+	
 	// 
 	
 	
@@ -35,6 +37,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener {
 		foreground.paint(g);
 		tree.paint(g);
 		duck.paint(g);
+		doggy.paint(g);
 	
 		}
 	
@@ -79,8 +82,28 @@ public class Frame extends JPanel implements ActionListener, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		bang.play();
 
+		bang.play(); //plays bang sound when click the duck
+		
+		if(duck.collide(arg0.getX(), arg0.getY())){
+			bang.play();
+		
+			
+		}else if (!duck.collide(arg0.getX(), arg0.getY())) { //when clicked 3 times shows the doc
+			
+			doggy.setMissed(1);
+			
+			
+		}
+		
+		if(doggy.youMissed()) {
+			doggy.showDog();
+			
+			ohNo.play(); 
+			
+		}else {
+			doggy.hideDog(); //hides dog
+		}
 		
 		
 	}

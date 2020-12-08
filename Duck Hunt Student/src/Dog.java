@@ -6,12 +6,12 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 
 public class Dog {
-	private int x = 0,y = 180;
+	private int x = -100,y = 180;
 	private Image img1; // image of the frog
 	private Image img2;
 	private Image img;
 	private AffineTransform tx = AffineTransform.getTranslateInstance(x, y);
-
+	 private int missed = 0;
 	public Dog() {
 		img1 = getImage("dog1.png"); //load the image for Tree
 		img2 = getImage("dog2.png");
@@ -19,6 +19,31 @@ public class Dog {
 		init(x, y); 				//initialize the location of the image
 	}
 	
+	public void setMissed(int fMissed) { 
+		missed += fMissed;
+		System.out.println(missed);
+	}
+	public void showDog() { //shows dog when clicked 3 times
+		x = 0;
+		y = 180;
+		tx.setToTranslation(x,y);
+		missed = 0;
+	}
+	
+	public boolean youMissed() { //if you miss 3 times then the dog will show 
+		if(missed == 3) {
+			missed = 0;
+			return true;
+		}
+		return false;
+	}
+	 
+	public void hideDog() {
+		x = 0;
+		y = 8888;
+		tx.setToTranslation(x, y);
+		
+	}
 	public void paint(Graphics g) {
 		
 		//these are the 2 lines of code needed draw an image on the screen
@@ -35,7 +60,11 @@ public class Dog {
 		 * You will need to code it so that the animation looks as natural as possible. 
 		 */
 
-		
+		if((int) (Math.random()*(2)+1)> 1) {
+			img = img1;
+		}else {
+			img = img2;
+		}
 		g2.drawImage(img, tx, null);   
 	}
 	
@@ -54,4 +83,18 @@ public class Dog {
 		}
 		return tempImage;
 	}
+	
+	
+	public class missedDuck{
+		private int missedDuck;
+		private Image img2;
+		
+		
+		
+	}
+	int missedClick = 3;
+	
+	
+	
+	
 }
